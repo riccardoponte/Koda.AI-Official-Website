@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Koda.AI</title>
+    <style>
+        /* --- Importazione Font --- */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap');
+
+        /* --- Variabili CSS Ispirate all'App Koda --- */
+        :root {
+            --spotify-bg: #121212;
+            --spotify-card: #181818;
+            --spotify-text: #ffffff;
+            --spotify-text-secondary: #b3b3b3;
+            --spotify-accent: #1db954;
+            --font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        /* --- Stili di Base e Reset --- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* --- Animazione Sfondo Ken Burns --- */
+        @keyframes kenburnsZoom {
+            0%, 100% {
+                transform: scale(1.0) translate(0, 0);
+            }
+            50% {
+                transform: scale(1.1) translate(-1%, 1%);
+            }
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background-color: var(--spotify-bg);
+            color: var(--spotify-text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Sfondo animato verde applicato a tutta la pagina */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: -1;
+            background-image: linear-gradient(rgba(18, 18, 18, 0.85), rgba(18, 18, 18, 0.85)), url('https://i.postimg.cc/bN4DrwdT/Sfondo-website-koda.png');
+            background-size: cover;
+            background-position: center center;
+            animation: kenburnsZoom 30s ease-in-out infinite;
+        }
+
+        .page-wrapper {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* --- Contenitore Principale (Hero) --- */
+        .hero-container {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+            text-align: center;
+        }
+
+        /* --- Header --- */
+        header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 24px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 10;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-decoration: none;
+            color: var(--spotify-text);
+        }
+
+        .logo span {
+            color: var(--spotify-accent);
+        }
+
+        .lang-button {
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: var(--spotify-text);
+            font-family: var(--font-family);
+            font-weight: 700;
+            font-size: 14px;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .lang-button:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        /* --- Stile Pulsante generico --- */
+        .button {
+            background-color: var(--spotify-accent);
+            color: #000;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .button:hover {
+            background-color: #1ed760;
+            transform: scale(1.05);
+        }
+        
+        /* --- Contenuto Sezione "Eroi" --- */
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            font-weight: 900;
+            margin-bottom: 16px;
+            line-height: 1.1;
+        }
+
+        .hero-content h1 .highlight {
+            color: var(--spotify-accent);
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            color: var(--spotify-text-secondary);
+            margin-bottom: 32px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* --- Stile Sezioni Generico --- */
+        .features-section, .download-section {
+            padding: 80px 40px;
+            background-color: rgba(12, 12, 12, 0.6);
+            backdrop-filter: blur(10px);
+            text-align: center;
+        }
+        
+        .section-header {
+            margin-bottom: 60px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .section-header p {
+            font-size: 1.1rem;
+            color: var(--spotify-text-secondary);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 32px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background-color: rgba(24, 24, 24, 0.7);
+            padding: 32px 24px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.2s ease, background-color 0.2s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            background-color: rgba(40, 40, 40, 0.8);
+        }
+
+        .feature-card .icon {
+            color: var(--spotify-accent);
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 12px;
+        }
+
+        .feature-card p {
+            color: var(--spotify-text-secondary);
+            font-size: 1rem;
+            text-align: justify;
+            hyphens: auto;
+        }
+
+        /* Stili Sezione Download App */
+        .download-section {
+            padding-top: 60px;
+        }
+        
+        .store-buttons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .store-buttons a {
+            display: inline-block;
+            transition: transform 0.2s ease;
+        }
+
+        .store-buttons a:hover {
+            transform: scale(1.05);
+        }
+        
+        .store-buttons img {
+            height: 60px;
+            width: auto;
+        }
+
+        /* --- Footer --- */
+        footer {
+            padding: 40px;
+            text-align: center;
+            color: var(--spotify-text-secondary);
+            font-size: 0.9rem;
+            background-color: rgba(18, 18, 18, 0.7);
+        }
+
+        /* --- Stili Responsive --- */
+        @media (max-width: 768px) {
+            header {
+                padding: 20px;
+            }
+            .hero-content h1 {
+                font-size: 3rem;
+            }
+            .hero-content p {
+                font-size: 1.1rem;
+            }
+            .features-section, .download-section {
+                padding: 60px 20px;
+            }
+            .section-header h2 {
+                font-size: 2rem;
+            }
+        }
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            .hero-content p {
+                font-size: 1rem;
+            }
+            .button {
+                padding: 12px 24px;
+                font-size: 14px;
+            }
+            .store-buttons img {
+                height: 50px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page-wrapper">
+        <!-- ======== SEZIONE PRINCIPALE (HERO) ======== -->
+        <div class="hero-container">
+            <header>
+                <a href="#" class="logo"><img src="https://i.postimg.cc/W1186486/logo-removebg-preview.png" alt="Koda.AI Logo" style="height: 40px;"></a>
+                <button id="lang-switcher" class="lang-button">EN</button>
+            </header>
+
+            <main class="hero-content">
+                <h1 data-translate-key="heroTitle">Trova l'AI <br> <span class="highlight">perfetta</span></h1>
+                <p data-translate-key="heroSubtitle">
+                    Esplora, chiedi e impara
+                </p>
+                <a href="#download" class="button" data-translate-key="heroButton">Inizia ora</a>
+            </main>
+        </div>
+
+        <!-- ======== SEZIONE FUNZIONALITÀ ======== -->
+        <section class="features-section">
+            <div class="section-header">
+                <h2 data-translate-key="featuresTitle">Un'esperienza completa</h2>
+                <p data-translate-key="featuresSubtitle">
+                    Il tuo centro di comando per l'intelligenza artificiale.
+                </p>
+            </div>
+            <div class="features-grid">
+                <!-- Card 1 -->
+                <div class="feature-card">
+                    <div class="icon"><svg xmlns="http://www.w3.org/2000/svg" height="40" viewBox="0 0 24 24" width="40" fill="currentColor"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/></svg></div>
+                    <h3 data-translate-key="feature1Title">Chatta</h3>
+                    <p data-translate-key="feature1Desc">Utilizza il chatbot di Koda per trovare lo strumento piu' adatto alle tue esigenze.</p>
+                </div>
+                <!-- Card 2 -->
+                <div class="feature-card">
+                    <div class="icon"><svg xmlns="http://www.w3.org/2000/svg" height="40" viewBox="0 0 24 24" width="40" fill="currentColor"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M16 11V3H8v6H2v12h20V11h-6zm-6-6h4v14h-4V5zm-6 6h4v8H4v-8zm16 8h-4v-8h4v8z"/></svg></div>
+                    <h3 data-translate-key="feature2Title">Scopri</h3>
+                    <p data-translate-key="feature2Desc">Esplora centinaia di AI, consulta le classifiche ufficiali e trova le migliori alternative sul mercato.</p>
+                </div>
+                <!-- Card 3 -->
+                <div class="feature-card">
+                     <div class="icon"><svg xmlns="http://www.w3.org/2000/svg" height="40" viewBox="0 0 24 24" width="40" fill="currentColor"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg></div>
+                    <h3 data-translate-key="feature3Title">Crea</h3>
+                    <p data-translate-key="feature3Desc">Salva tutti i tuoi strumenti preferiti e realizza playlist personalizzate.</p>
+                </div>
+                <!-- Card 4 -->
+                <div class="feature-card">
+                    <div class="icon"><svg xmlns="http://www.w3.org/2000/svg" height="40" viewBox="0 0 24 24" width="40" fill="currentColor"><path d="M0 0h24v24H0z" fill="none"/><path d="M22.7 19l-9.1-9.1c.9-2.3.4-5-1.5-6.9-2-2-5-2.4-7.4-1.3L9 6 6 9 1.6 4.7C.4 7.1.9 10.1 2.9 12.1c1.9 1.9 4.6 2.4 6.9 1.5l9.1 9.1c.4.4 1 .4 1.4 0l2.3-2.3c.5-.4.5-1.1.1-1.4z"/></svg></div>
+                    <h3 data-translate-key="feature4Title">Migliora</h3>
+                    <p data-translate-key="feature4Desc">Migliora tutti i tuoi prompt per ottenere risultati migliori con l'ottimizzatore di Koda.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sezione Download con ID per l'ancora -->
+        <section class="download-section" id="download">
+            <div class="section-header">
+                <h2 data-translate-key="downloadTitle">Scarica subito</h2>
+            </div>
+            <div class="store-buttons">
+                <!-- Sostituisci '#' con il tuo link reale all'App Store -->
+                <a href="#" target="_blank" aria-label="Download on the App Store">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" alt="Download on the App Store">
+                </a>
+                <!-- Sostituisci '#' con il tuo link reale al Google Play Store -->
+                <a href="#" target="_blank" aria-label="Get it on Google Play">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Get it on Google Play">
+                </a>
+            </div>
+        </section>
+
+        <!-- ======== FOOTER ======== -->
+        <footer>
+            <p data-translate-key="footerText">&copy; 2025 Koda.AI - Sviluppata da Riccardo Ponte & Davide Narracci</p>
+        </footer>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- LOGICA DI TRADUZIONE ---
+            const translations = {
+                it: {
+                    heroTitle: "Trova l'AI <br> <span class='highlight'>perfetta</span>",
+                    heroSubtitle: "Esplora, chiedi e impara",
+                    heroButton: "Inizia ora",
+                    featuresTitle: "Un'esperienza completa",
+                    featuresSubtitle: "Il tuo centro di comando per l'intelligenza artificiale.",
+                    feature1Title: "Chatta",
+                    feature1Desc: "Utilizza il chatbot di Koda per trovare lo strumento piu' adatto alle tue esigenze.",
+                    feature2Title: "Scopri",
+                    feature2Desc: "Esplora il catalogo, consulta tutte  le classifiche e impara grazie ai video dimostrativi.",
+                    feature3Title: "Crea",
+                    feature3Desc: "Salva tutti i tuoi strumenti preferiti e realizza playlist personalizzate.",
+                    feature4Title: "Migliora",
+                    feature4Desc: "Migliora tutti i tuoi prompt per ottenere dei risultati migliori con l'ottimizzatore di Koda.",
+                    downloadTitle: "Scarica subito",
+                    footerText: "&copy; 2025 Koda.AI - Sviluppata da <a href='https://www.linkedin.com/in/riccardo-giorgio-ponte-a5a528217' target='_blank' style='color: var(--spotify-text-secondary);'><b><u>Riccardo Ponte</u></b></a> & <a href='https://www.linkedin.com/in/davide-fabio-narracci-13b550221/' target='_blank' style='color: var(--spotify-text-secondary);'><b><u>Davide Narracci</u></b></a>"
+                },
+                en: {
+                    heroTitle: "Find AI <br> <span class='highlight'>you need</span>",
+                    heroSubtitle: "Explore, ask and learn",
+                    heroButton: "Start now",
+                    featuresTitle: "A complete experience",
+                    featuresSubtitle: "Your command center for artificial intelligence.",
+                    feature1Title: "Chat",
+                    feature1Desc: "Use Koda's chatbot to find the tool that best suits your needs.",
+                    feature2Title: "Discover",
+                    feature2Desc: "Explore the catalog, check out all the rankings, and learn from the demo videos.",
+                    feature3Title: "Create",
+                    feature3Desc: "Explore the catalog, check out all the rankings, and learn from the demo videos.",
+                    feature4Title: "Improve",
+                    feature4Desc: "Enhance all your prompts for better results with Koda's optimizer.",
+                    downloadTitle: "Download now",
+                    footerText: "&copy; Koda.AI - Developed by <a href='https://www.linkedin.com/in/riccardo-giorgio-ponte-a5a528217' target='_blank' style='color: var(--spotify-text-secondary);'><b><u>Riccardo Ponte</u></b></a> & <a href='https://www.linkedin.com/in/davide-fabio-narracci-13b550221/' target='_blank' style='color: var(--spotify-text-secondary);'><b><u>Davide Narracci</u></b></a>"
+                }
+            };
+
+            const langSwitcher = document.getElementById('lang-switcher');
+
+            function switchLanguage(lang) {
+                document.documentElement.lang = lang;
+                document.querySelectorAll('[data-translate-key]').forEach(el => {
+                    const key = el.dataset.translateKey;
+                    if (translations[lang][key]) {
+                        el.innerHTML = translations[lang][key];
+                    }
+                });
+                langSwitcher.textContent = (lang === 'it') ? 'EN' : 'IT';
+            }
+
+            langSwitcher.addEventListener('click', () => {
+                const currentLang = document.documentElement.lang;
+                const newLang = (currentLang === 'it') ? 'en' : 'it';
+                switchLanguage(newLang);
+            });
+            
+            // Imposta la lingua iniziale su Italiano
+            switchLanguage('it');
+        });
+    </script>
+</body>
+
+</html>
