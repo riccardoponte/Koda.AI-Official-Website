@@ -28,9 +28,12 @@
 
         /* --- Animazione Sfondo Ken Burns --- */
         @keyframes kenburnsZoom {
-            0%, 100% {
+
+            0%,
+            100% {
                 transform: scale(1.0) translate(0, 0);
             }
+
             50% {
                 transform: scale(1.1) translate(-1%, 1%);
             }
@@ -141,7 +144,7 @@
             background-color: #1ed760;
             transform: scale(1.05);
         }
-        
+
         /* --- Contenuto Sezione "Eroi" --- */
         .hero-content {
             max-width: 800px;
@@ -168,13 +171,14 @@
         }
 
         /* --- Stile Sezioni Generico --- */
-        .features-section, .download-section {
+        .features-section,
+        .download-section {
             padding: 80px 40px;
             background-color: rgba(12, 12, 12, 0.6);
             backdrop-filter: blur(10px);
             text-align: center;
         }
-        
+
         .section-header {
             margin-bottom: 60px;
             max-width: 700px;
@@ -235,7 +239,7 @@
         .download-section {
             padding-top: 60px;
         }
-        
+
         .store-buttons {
             display: flex;
             justify-content: center;
@@ -244,18 +248,224 @@
             flex-wrap: wrap;
         }
 
-        .store-buttons a {
+        .store-buttons a,
+        .store-buttons button {
             display: inline-block;
             transition: transform 0.2s ease;
         }
 
-        .store-buttons a:hover {
+        .store-buttons a:hover,
+        .store-buttons button:hover {
             transform: scale(1.05);
         }
-        
+
         .store-buttons img {
             height: 60px;
             width: auto;
+        }
+
+        /* iOS PWA Badge Button - Stile Google Play */
+        .ios-pwa-btn {
+            background: #000;
+            border: 1.5px solid #a6a6a6;
+            border-radius: 8px;
+            padding: 8px 16px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            height: 60px;
+            min-width: 180px;
+            transition: transform 0.2s ease;
+        }
+
+        .ios-pwa-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .ios-pwa-btn .apple-icon {
+            width: 28px;
+            height: 28px;
+            fill: white;
+        }
+
+        .ios-pwa-btn .btn-text {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            line-height: 1.15;
+        }
+
+        .ios-pwa-btn .btn-text .small {
+            font-size: 9px;
+            color: #fff;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .ios-pwa-btn .btn-text .large {
+            font-size: 20px;
+            color: white;
+            font-weight: 600;
+        }
+
+        /* Safari Guide Modal */
+        .safari-modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .safari-modal-overlay.active {
+            display: flex;
+        }
+
+        .safari-modal {
+            background: linear-gradient(145deg, #2c2c2e 0%, #1c1c1e 100%);
+            border-radius: 20px;
+            padding: 32px;
+            max-width: 420px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+        }
+
+        .safari-modal-close {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+        }
+
+        .safari-modal-close:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .safari-modal-close svg {
+            width: 16px;
+            height: 16px;
+            fill: white;
+        }
+
+        .safari-modal h3 {
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .safari-modal h3 svg {
+            width: 28px;
+            height: 28px;
+            fill: var(--spotify-accent);
+        }
+
+        .safari-modal .modal-subtitle {
+            color: var(--spotify-text-secondary);
+            margin-bottom: 24px;
+            font-size: 0.95rem;
+        }
+
+        .safari-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .safari-step {
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+        }
+
+        .step-number {
+            background: var(--spotify-accent);
+            color: #000;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+
+        .step-content {
+            flex: 1;
+        }
+
+        .step-content h4 {
+            font-size: 1rem;
+            margin-bottom: 4px;
+        }
+
+        .step-content p {
+            color: var(--spotify-text-secondary);
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        .step-content .step-icon {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 4px 10px;
+            border-radius: 6px;
+            margin-top: 8px;
+        }
+
+        .step-content .step-icon svg {
+            width: 20px;
+            height: 20px;
+            fill: #007AFF;
+        }
+
+        .safari-modal .open-link-btn {
+            display: block;
+            width: 100%;
+            margin-top: 24px;
+            background: var(--spotify-accent);
+            color: #000;
+            border: none;
+            padding: 14px;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            transition: all 0.2s;
+        }
+
+        .safari-modal .open-link-btn:hover {
+            background: #1ed760;
+            transform: scale(1.02);
         }
 
         /* --- Footer --- */
@@ -272,30 +482,39 @@
             header {
                 padding: 20px;
             }
+
             .hero-content h1 {
                 font-size: 3rem;
             }
+
             .hero-content p {
                 font-size: 1.1rem;
             }
-            .features-section, .download-section {
+
+            .features-section,
+            .download-section {
                 padding: 60px 20px;
             }
+
             .section-header h2 {
                 font-size: 2rem;
             }
         }
+
         @media (max-width: 480px) {
             .hero-content h1 {
                 font-size: 2.5rem;
             }
+
             .hero-content p {
                 font-size: 1rem;
             }
+
             .button {
                 padding: 12px 24px;
                 font-size: 14px;
             }
+
             .store-buttons img {
                 height: 50px;
             }
@@ -308,7 +527,8 @@
         <!-- ======== SEZIONE PRINCIPALE (HERO) ======== -->
         <div class="hero-container">
             <header>
-                <a href="#" class="logo"><img src="https://i.postimg.cc/W1186486/logo-removebg-preview.png" alt="Koda.AI Logo" style="height: 40px;"></a>
+                <a href="#" class="logo"><img src="https://i.postimg.cc/W1186486/logo-removebg-preview.png"
+                        alt="Koda.AI Logo" style="height: 40px;"></a>
                 <button id="lang-switcher" class="lang-button">EN</button>
             </header>
 
@@ -317,7 +537,8 @@
                 <p data-translate-key="heroSubtitle">
                     Esplora, chiedi e impara
                 </p>
-                <a href="#download" class="button" data-translate-key="heroButton">Inizia ora</a>
+                <a href="https://riccardoponte.github.io/KODA-APP-MOBILE-NO-DEV-/#home" target="_blank" class="button"
+                    data-translate-key="heroButton">Inizia ora</a>
             </main>
         </div>
 
@@ -332,27 +553,50 @@
             <div class="features-grid">
                 <!-- Card 1 -->
                 <div class="feature-card">
-                    <div class="icon"><svg xmlns="http://www.w3.org/2000/svg" height="40" viewBox="0 0 24 24" width="40" fill="currentColor"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/></svg></div>
+                    <div class="icon"><svg xmlns="http://www.w3.org/2000/svg" height="40" viewBox="0 0 24 24" width="40"
+                            fill="currentColor">
+                            <path d="M0 0h24v24H0V0z" fill="none" />
+                            <path
+                                d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z" />
+                        </svg></div>
                     <h3 data-translate-key="feature1Title">Chatta</h3>
-                    <p data-translate-key="feature1Desc">Utilizza il chatbot di Koda per trovare lo strumento piu' adatto alle tue esigenze.</p>
+                    <p data-translate-key="feature1Desc">Utilizza il chatbot di Koda per trovare lo strumento piu'
+                        adatto alle tue esigenze.</p>
                 </div>
                 <!-- Card 2 -->
                 <div class="feature-card">
-                    <div class="icon"><svg xmlns="http://www.w3.org/2000/svg" height="40" viewBox="0 0 24 24" width="40" fill="currentColor"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M16 11V3H8v6H2v12h20V11h-6zm-6-6h4v14h-4V5zm-6 6h4v8H4v-8zm16 8h-4v-8h4v8z"/></svg></div>
+                    <div class="icon"><svg xmlns="http://www.w3.org/2000/svg" height="40" viewBox="0 0 24 24" width="40"
+                            fill="currentColor">
+                            <path d="M0 0h24v24H0V0z" fill="none" />
+                            <path d="M16 11V3H8v6H2v12h20V11h-6zm-6-6h4v14h-4V5zm-6 6h4v8H4v-8zm16 8h-4v-8h4v8z" />
+                        </svg></div>
                     <h3 data-translate-key="feature2Title">Scopri</h3>
-                    <p data-translate-key="feature2Desc">Esplora centinaia di AI, consulta le classifiche ufficiali e trova le migliori alternative sul mercato.</p>
+                    <p data-translate-key="feature2Desc">Esplora centinaia di AI, consulta le classifiche ufficiali e
+                        trova le migliori alternative sul mercato.</p>
                 </div>
                 <!-- Card 3 -->
                 <div class="feature-card">
-                     <div class="icon"><svg xmlns="http://www.w3.org/2000/svg" height="40" viewBox="0 0 24 24" width="40" fill="currentColor"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg></div>
+                    <div class="icon"><svg xmlns="http://www.w3.org/2000/svg" height="40" viewBox="0 0 24 24" width="40"
+                            fill="currentColor">
+                            <path d="M0 0h24v24H0V0z" fill="none" />
+                            <path
+                                d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z" />
+                        </svg></div>
                     <h3 data-translate-key="feature3Title">Crea</h3>
-                    <p data-translate-key="feature3Desc">Salva tutti i tuoi strumenti preferiti e realizza playlist personalizzate.</p>
+                    <p data-translate-key="feature3Desc">Salva tutti i tuoi strumenti preferiti e realizza playlist
+                        personalizzate.</p>
                 </div>
                 <!-- Card 4 -->
                 <div class="feature-card">
-                    <div class="icon"><svg xmlns="http://www.w3.org/2000/svg" height="40" viewBox="0 0 24 24" width="40" fill="currentColor"><path d="M0 0h24v24H0z" fill="none"/><path d="M22.7 19l-9.1-9.1c.9-2.3.4-5-1.5-6.9-2-2-5-2.4-7.4-1.3L9 6 6 9 1.6 4.7C.4 7.1.9 10.1 2.9 12.1c1.9 1.9 4.6 2.4 6.9 1.5l9.1 9.1c.4.4 1 .4 1.4 0l2.3-2.3c.5-.4.5-1.1.1-1.4z"/></svg></div>
+                    <div class="icon"><svg xmlns="http://www.w3.org/2000/svg" height="40" viewBox="0 0 24 24" width="40"
+                            fill="currentColor">
+                            <path d="M0 0h24v24H0z" fill="none" />
+                            <path
+                                d="M22.7 19l-9.1-9.1c.9-2.3.4-5-1.5-6.9-2-2-5-2.4-7.4-1.3L9 6 6 9 1.6 4.7C.4 7.1.9 10.1 2.9 12.1c1.9 1.9 4.6 2.4 6.9 1.5l9.1 9.1c.4.4 1 .4 1.4 0l2.3-2.3c.5-.4.5-1.1.1-1.4z" />
+                        </svg></div>
                     <h3 data-translate-key="feature4Title">Migliora</h3>
-                    <p data-translate-key="feature4Desc">Migliora tutti i tuoi prompt per ottenere risultati migliori con l'ottimizzatore di Koda.</p>
+                    <p data-translate-key="feature4Desc">Migliora tutti i tuoi prompt per ottenere risultati migliori
+                        con l'ottimizzatore di Koda.</p>
                 </div>
             </div>
         </section>
@@ -363,23 +607,95 @@
                 <h2 data-translate-key="downloadTitle">Scarica subito</h2>
             </div>
             <div class="store-buttons">
-                <!-- Sostituisci '#' con il tuo link reale all'App Store -->
-                <a href="#" target="_blank" aria-label="Download on the App Store">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" alt="Download on the App Store">
-                </a>
-                <!-- Sostituisci '#' con il tuo link reale al Google Play Store -->
-                <a href="#" target="_blank" aria-label="Get it on Google Play">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Get it on Google Play">
+                <!-- Google Play Badge -->
+                <a href="https://play.google.com/store/apps/details?id=co.median.android.bnapkra" target="_blank"
+                    aria-label="Get it on Google Play">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
+                        alt="Get it on Google Play">
                 </a>
             </div>
         </section>
+
+        <!-- Safari Guide Modal -->
+        <div id="safari-modal-overlay" class="safari-modal-overlay">
+            <div class="safari-modal">
+                <button id="safari-modal-close" class="safari-modal-close" aria-label="Chiudi">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path
+                            d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+                    </svg>
+                </button>
+                <h3>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                        <path
+                            d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.3-18.6-26.9-46.2-41.8-82.5-44.8-34.4-3.1-72.2 20.2-86 20.2-14.4 0-47.4-19.3-74.4-19.3C63.5 141.1 0 184 0 265.2c0 24.2 4.4 49.3 13.1 75.1 11.6 34.9 53.5 120.4 97.2 119 23.4-.6 39.8-16.8 74.3-16.8 33.7 0 48.8 16.8 74.4 16.8 44.1-.7 82.2-78.5 93.3-113.5-59.5-28.3-56.6-82.5-33.6-77.1zM243.1 89.5c27.8-33.8 24.8-64.7 24-75-24 1.4-51.7 16.5-67.8 35.3-17.5 20.2-28 45.3-25.7 73 26.3 2 53.2-13.1 69.5-33.3z" />
+                    </svg>
+                    <span data-translate-key="safariModalTitle">Installa su iPhone</span>
+                </h3>
+                <p class="modal-subtitle" data-translate-key="safariModalSubtitle">Segui questi passaggi per aggiungere
+                    Koda alla schermata Home del tuo iPhone</p>
+
+                <div class="safari-steps">
+                    <div class="safari-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4 data-translate-key="safariStep1Title">Apri in Safari</h4>
+                            <p data-translate-key="safariStep1Desc">Clicca il pulsante qui sotto per aprire l'app in
+                                Safari</p>
+                        </div>
+                    </div>
+
+                    <div class="safari-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4 data-translate-key="safariStep2Title">Tocca "Condividi"</h4>
+                            <p data-translate-key="safariStep2Desc">Tocca l'icona di condivisione nella barra di
+                                navigazione</p>
+                            <div class="step-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                    <path
+                                        d="M16 5l-1.42 1.42-1.59-1.59V16h-1.98V4.83L9.42 6.42 8 5l4-4 4 4zm4 5v11c0 1.1-.9 2-2 2H6c-1.11 0-2-.9-2-2V10c0-1.11.89-2 2-2h3v2H6v11h12V10h-3V8h3c1.1 0 2 .89 2 2z" />
+                                </svg>
+                                <span data-translate-key="shareIcon">Condividi</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="safari-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4 data-translate-key="safariStep3Title">"Aggiungi a Home"</h4>
+                            <p data-translate-key="safariStep3Desc">Scorri il menu e seleziona "Aggiungi a Home"</p>
+                            <div class="step-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
+                                </svg>
+                                <span data-translate-key="addToHomeIcon">Aggiungi a Home</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="safari-step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h4 data-translate-key="safariStep4Title">Conferma</h4>
+                            <p data-translate-key="safariStep4Desc">Tocca "Aggiungi" nell'angolo in alto a destra per
+                                confermare</p>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="https://riccardoponte.github.io/KODA-APP-MOBILE-NO-DEV-/" target="_blank" class="open-link-btn"
+                    data-translate-key="openInSafariBtn">Apri in Safari</a>
+            </div>
+        </div>
 
         <!-- ======== FOOTER ======== -->
         <footer>
             <p data-translate-key="footerText">&copy; 2025 Koda.AI - Sviluppata da Riccardo Ponte & Davide Narracci</p>
         </footer>
     </div>
-    
+
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             // --- LOGICA DI TRADUZIONE ---
@@ -399,7 +715,22 @@
                     feature4Title: "Migliora",
                     feature4Desc: "Migliora tutti i tuoi prompt per ottenere dei risultati migliori con l'ottimizzatore di Koda.",
                     downloadTitle: "Scarica subito",
-                    footerText: "&copy; 2025 Koda.AI - Sviluppata da <a href='https://www.linkedin.com/in/riccardo-giorgio-ponte-a5a528217' target='_blank' style='color: var(--spotify-text-secondary);'><b><u>Riccardo Ponte</u></b></a> & <a href='https://www.linkedin.com/in/davide-fabio-narracci-13b550221/' target='_blank' style='color: var(--spotify-text-secondary);'><b><u>Davide Narracci</u></b></a>"
+                    footerText: "&copy; 2025 Koda.AI - Sviluppata da <a href='https://www.linkedin.com/in/riccardo-giorgio-ponte-a5a528217' target='_blank' style='color: var(--spotify-text-secondary);'><b><u>Riccardo Ponte</u></b></a> & <a href='https://www.linkedin.com/in/davide-fabio-narracci-13b550221/' target='_blank' style='color: var(--spotify-text-secondary);'><b><u>Davide Narracci</u></b></a>",
+                    // iOS PWA and Safari Guide translations
+                    iosSmallText: "Installa PWA",
+                    safariModalTitle: "Installa su iPhone",
+                    safariModalSubtitle: "Segui questi passaggi per aggiungere Koda alla schermata Home del tuo iPhone",
+                    safariStep1Title: "Apri in Safari",
+                    safariStep1Desc: "Clicca il pulsante qui sotto per aprire l'app in Safari",
+                    safariStep2Title: "Tocca \"Condividi\"",
+                    safariStep2Desc: "Tocca l'icona di condivisione nella barra di navigazione",
+                    shareIcon: "Condividi",
+                    safariStep3Title: "\"Aggiungi a Home\"",
+                    safariStep3Desc: "Scorri il menu e seleziona \"Aggiungi a Home\"",
+                    addToHomeIcon: "Aggiungi a Home",
+                    safariStep4Title: "Conferma",
+                    safariStep4Desc: "Tocca \"Aggiungi\" nell'angolo in alto a destra per confermare",
+                    openInSafariBtn: "Apri in Safari"
                 },
                 en: {
                     heroTitle: "Find AI <br> <span class='highlight'>you need</span>",
@@ -416,7 +747,22 @@
                     feature4Title: "Improve",
                     feature4Desc: "Enhance all your prompts for better results with Koda's optimizer.",
                     downloadTitle: "Download now",
-                    footerText: "&copy; Koda.AI - Developed by <a href='https://www.linkedin.com/in/riccardo-giorgio-ponte-a5a528217' target='_blank' style='color: var(--spotify-text-secondary);'><b><u>Riccardo Ponte</u></b></a> & <a href='https://www.linkedin.com/in/davide-fabio-narracci-13b550221/' target='_blank' style='color: var(--spotify-text-secondary);'><b><u>Davide Narracci</u></b></a>"
+                    footerText: "&copy; Koda.AI - Developed by <a href='https://www.linkedin.com/in/riccardo-giorgio-ponte-a5a528217' target='_blank' style='color: var(--spotify-text-secondary);'><b><u>Riccardo Ponte</u></b></a> & <a href='https://www.linkedin.com/in/davide-fabio-narracci-13b550221/' target='_blank' style='color: var(--spotify-text-secondary);'><b><u>Davide Narracci</u></b></a>",
+                    // iOS PWA and Safari Guide translations
+                    iosSmallText: "Install PWA",
+                    safariModalTitle: "Install on iPhone",
+                    safariModalSubtitle: "Follow these steps to add Koda to your iPhone Home Screen",
+                    safariStep1Title: "Open in Safari",
+                    safariStep1Desc: "Click the button below to open the app in Safari",
+                    safariStep2Title: "Tap \"Share\"",
+                    safariStep2Desc: "Tap the share icon in the navigation bar",
+                    shareIcon: "Share",
+                    safariStep3Title: "\"Add to Home Screen\"",
+                    safariStep3Desc: "Scroll the menu and select \"Add to Home Screen\"",
+                    addToHomeIcon: "Add to Home Screen",
+                    safariStep4Title: "Confirm",
+                    safariStep4Desc: "Tap \"Add\" in the top right corner to confirm",
+                    openInSafariBtn: "Open in Safari"
                 }
             };
 
@@ -438,9 +784,42 @@
                 const newLang = (currentLang === 'it') ? 'en' : 'it';
                 switchLanguage(newLang);
             });
-            
+
             // Imposta la lingua iniziale su Italiano
             switchLanguage('it');
+
+            // --- LOGICA MODAL SAFARI GUIDE ---
+            const iosPwaBtn = document.getElementById('ios-pwa-btn');
+            const safariModalOverlay = document.getElementById('safari-modal-overlay');
+            const safariModalClose = document.getElementById('safari-modal-close');
+
+            // Open modal when iOS PWA button is clicked
+            iosPwaBtn.addEventListener('click', () => {
+                safariModalOverlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+
+            // Close modal when close button is clicked
+            safariModalClose.addEventListener('click', () => {
+                safariModalOverlay.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+
+            // Close modal when clicking outside the modal content
+            safariModalOverlay.addEventListener('click', (e) => {
+                if (e.target === safariModalOverlay) {
+                    safariModalOverlay.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+
+            // Close modal with Escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && safariModalOverlay.classList.contains('active')) {
+                    safariModalOverlay.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
         });
     </script>
 </body>
