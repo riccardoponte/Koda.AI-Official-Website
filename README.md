@@ -1,3 +1,9 @@
+🌐 **Lingua / Language:** [🇮🇹 Italiano](#italiano) · [🇬🇧 English](#english)
+
+---
+
+<a id="italiano"></a>
+
 # Koda AI — Official Website
 
 Landing page ufficiale di **Koda AI** (*"Trova l'AI perfetta: esplora, chiedi e impara"*), sviluppata da Riccardo Ponte & Davide Narracci.
@@ -20,3 +26,30 @@ Koda.AI-Official-Website/
 ## Avvio rapido
 
 Apri `index.html` in qualsiasi browser moderno.
+
+---
+
+<a id="english"></a>
+
+# Koda AI — Official Website
+
+Official landing page of **Koda AI** (*"Find the perfect AI: explore, ask, and learn"*), developed by Riccardo Ponte & Davide Narracci.
+
+## Page Sections
+
+- **Hero & Overview**: Introduction to Koda as a command center for Artificial Intelligence.
+- **Chat**: Chatbot support to identify the AI tool best suited to your needs.
+- **Discover**: Browse the catalog, official rankings, and market alternatives.
+- **Create**: Save favorite tools and create custom playlists.
+- **iOS Installation Guide (PWA)**: Step-by-step instructions for adding the app to the Home screen on iPhone via Safari (*Share → Add to Home Screen*).
+
+## Repository Structure
+
+```text
+Koda.AI-Official-Website/
+└── index.html   # Single-file responsive showcase website (HTML + CSS + JS)
+```
+
+## Quick Start
+
+Open `index.html` in any modern browser.
